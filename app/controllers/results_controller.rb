@@ -1,3 +1,5 @@
+require_relative Rails.root.join('lib/result_generator')
+
 class ResultsController < ApplicationController
   def generate
     result_generator = ResultGenerator.new(params['tournament_id'])

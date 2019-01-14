@@ -1,3 +1,5 @@
+require_relative Rails.root.join('lib/group_builder')
+
 class GroupsController < ApplicationController
   def generate
     group_builder = GroupBuilder.new(params['tournament_id'])

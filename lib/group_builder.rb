@@ -1,3 +1,5 @@
+require_relative Rails.root.join('lib/ids_randomizer')
+
 class GroupBuilder
   def initialize(tournament_id)
     @tournament = Tournament.find(tournament_id)
