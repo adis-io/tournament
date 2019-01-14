@@ -1,0 +1,12 @@
+<% if @tournament.groups.blank? %>
+  <hr>
+  <%= link_to 'Generate groups', generate_tournament_groups_path(@tournament.id), method: :post %>
+<% end %>
+<hr>
+<h3>All Teams</h3>
+<% counter = 1 %>
+<% @tournament.teams.each do |team| %>
+  <h6>Team <%= counter %> name: <%= team.name %></h6>
+  <% counter += 1 %>
+<% end %>
+<hr>

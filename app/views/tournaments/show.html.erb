@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tournament name:</strong>
+  <%= @tournament.name %>
+</p>
+
+<%= render partial: 'play_off' %>
+<%= render partial: 'groups' %>
+<%= render partial: 'teams' %>
+
+<%= link_to 'Back', tournaments_path %>

@@ -1,0 +1,59 @@
+<% if @tournament.games.group_a.present? && @tournament.games.group_b.present? %>
+  <hr>
+  <% if @tournament.games.quarter_final.blank? %>
+    <%= link_to 'Generate results Play', generate_tournament_results_path(@tournament, stage: 'Play-off'), method: :post %>
+  <% else %>
+    <h3>Winner: <%= @tournament.games.final.first.winner.name %></h3>
+
+    <hr>
+    <h3>Final game:</h3>
+    <table border="1">
+      <tr>
+        <th>First team:</th>
+        <th>Second team:</th>
+        <th>Winner:</th>
+      </tr>
+      <% @tournament.games.final.each do |game| %>
+        <tr>
+          <td><%= game.first_team.name %></td>
+          <td><%= game.second_team.name %></td>
+          <td><%= game.winner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <hr>
+    <h3>Semi final games:</h3>
+    <table border="1">
+      <tr>
+        <th>First team:</th>
+        <th>Second team:</th>
+        <th>Winner:</th>
+      </tr>
+      <% @tournament.games.semi_final.each do |game| %>
+        <tr>
+          <td><%= game.first_team.name %></td>
+          <td><%= game.second_team.name %></td>
+          <td><%= game.winner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <hr>
+    <h3>Quarter final games:</h3>
+    <table border="1">
+      <tr>
+        <th>First team:</th>
+        <th>Second team:</th>
+        <th>Winner:</th>
+      </tr>
+      <% @tournament.games.quarter_final.each do |game| %>
+        <tr>
+          <td><%= game.first_team.name %></td>
+          <td><%= game.second_team.name %></td>
+          <td><%= game.winner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>

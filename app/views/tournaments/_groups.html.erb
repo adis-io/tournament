@@ -1,0 +1,86 @@
+<% if @tournament.groups.present? %>
+  <hr>
+  <table border="1">
+    <tr>
+      <th>Group A</th>
+      <th>Group B</th>
+    </tr>
+    <% 8.times do |counter| %>
+      <tr>
+        <td><%= @tournament.groups.a[counter].team.name %></td>
+        <td><%= @tournament.groups.b[counter].team.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% if @tournament.games.group_a.blank? %>
+    <%= link_to 'Generate results for Group A', generate_tournament_results_path(@tournament, stage: 'Group A'), method: :post %>
+  <% end %>
+  <% if @tournament.games.group_b.blank? %>
+    <br>
+    <%= link_to 'Generate results for Group B', generate_tournament_results_path(@tournament, stage: 'Group B'), method: :post %>
+  <% end %>
+  <% if @tournament.games.group_a.present? %>
+    <h3>Results (Group A):</h3>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Wins</th>
+      </tr>
+      <% @tournament.teams.group_a.order(wins: :desc).each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= team.wins %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <% if @tournament.games.group_b.present? %>
+    <h3>Results (Group B):</h3>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Wins</th>
+      </tr>
+      <% @tournament.teams.group_b.order(wins: :desc).each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= team.wins %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <% if @tournament.games.group_a.present? %>
+    <h3>Matches (Group A):</h3>
+    <table border="1">
+      <tr>
+        <th>First team</th>
+        <th>Second team</th>
+        <th>Winner</th>
+      </tr>
+      <% @tournament.games.group_a.each do |team| %>
+        <tr>
+          <td><%= team.first_team.name %></td>
+          <td><%= team.second_team.name %></td>
+          <td><%= team.winner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <% if @tournament.games.group_b.present? %>
+    <h3>Matches (Group B):</h3>
+    <table border="1">
+      <tr>
+        <th>First team</th>
+        <th>Second team</th>
+        <th>Winner</th>
+      </tr>
+      <% @tournament.games.group_b.each do |team| %>
+        <tr>
+          <td><%= team.first_team.name %></td>
+          <td><%= team.second_team.name %></td>
+          <td><%= team.winner.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>

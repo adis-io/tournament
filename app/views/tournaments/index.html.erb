@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tournaments</h1>
+
+<% if @tournaments.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.name %></td>
+        <td><%= link_to 'Show', tournament %></td>
+        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  Tournaments have not been created yet
+<% end %>
+
+<br>
+
+<%= link_to 'New Tournament', new_tournament_path %>

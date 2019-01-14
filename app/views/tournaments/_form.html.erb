@@ -1,0 +1,31 @@
+<%= form_with(model: tournament, local: true) do |form| %>
+  <% if tournament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+
+      <ul>
+      <% tournament.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, 'Tournament name:' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <h3>Tournament teams:</h3>
+
+  <% 16.times do |counter| %>
+    <div class="field">
+      <label for="team<%= counter %>_name">Team <%= counter + 1 %> name:</label>
+      <input type="text" name="tournament[team<%= counter %>_name]" id="team<%= counter %>_name">
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
